@@ -1,3 +1,6 @@
+from numpy.distutils.conv_template import header
+
+
 class Node:
     
     def __init__(self,data):
@@ -66,11 +69,56 @@ class LinkedList:
         if curNode == None:
             return str(target) + " Node not Found!!!"
 
+    def reverseIt(self):
+        prev = None
+        curr = self.head
+
+        while curr:
+            next = curr.next
+            curr.next = prev
+            prev = curr
+            curr = next
+
+        self.head = prev
+
+    def sortIt(self):
+        if self.head == None or self.head.next == None:
+            return self.head
+
+        i = None
+        while i!=self.head:
+            j = self.head
+            while j.next != i:
+                if j.data > j.next.data:
+                    j.data, j.next.data = j.next.data, j.data
+                j = j.next
+            i = j
+
+
 ll = LinkedList()
 
-for i in range(0,100,10):
+for i in range(0,50,10):
     ll.addLast(i+10)
 
+for i in range(0,60,5):
+    if i%5 == 0:
+        ll.addLast(i)
+    else:
+        ll.addFirst(i)
+
 ll.printLL()
+
 print(ll.findNodePos(40))
 print(ll.deleteNode(170))
+
+ll.reverseIt()
+
+print("New Unsorted List: ")
+
+ll.printLL()
+
+ll.sortIt()
+
+print("Sorted List: ")
+
+ll.printLL()
