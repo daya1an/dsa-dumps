@@ -1,0 +1,15 @@
+In Binary tree, each node can have at most two children.
+In Binary Search Tree, left child is less than the parent node and right child is greater than the parent node.
+
+Traversals:
+1. Inorder: (left, root, right)
+- First Left Sub tree, then Root, then Right Sub tree.
+- The Root will be in the middle of the traversal.
+
+2. Preorder: (root, left, right)
+- First Root, then Left Sub tree, then Right Sub tree.
+- The Root will be at the start of the traversal.
+
+3. Postorder: (left, right, root)
+- First Left Sub tree, then Right Sub tree, then Root.
+- The Root will be at the end of the traversal.
