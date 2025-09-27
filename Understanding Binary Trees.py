@@ -131,7 +131,52 @@ class BinarySearchTreeNode:
         print(rd,ld)
         return max(ld, rd)
 
+    def isValidBST(self):
 
+        root = self
+
+        l = root.left
+        r = root.right
+        while l or r:
+            if l:
+                if l.data >= root.data:
+                    return False
+                else:
+                    l = l.left
+            if r:
+                if r.data <= root.data:
+                    return False
+                else:
+                    r = r.left
+
+        #         if curr.left:
+        #             if curr.left.data >= curr.data:
+        #                 return False
+
+        #         if curr.right:
+        #             if curr.right.data <= curr.data:
+        #                 return False
+
+        #         if curr.left and curr.right:
+        #             if curr.left.data >= curr.right.data:
+        #                 return False
+
+        elements = []
+        stack = []
+        curr = root
+
+        while stack or curr:
+            while curr:
+                stack.append(curr)
+                curr = curr.left
+            curr = stack.pop()
+            elements.append(curr.data)
+            curr = curr.right
+
+        if elements == sorted(elements):
+            return True
+
+        return False
 
 def buildBST(elements):
 
@@ -155,10 +200,15 @@ if __name__ == "__main__":
     btree.delete(e)
     print("After removing " + str(e) + " : ", btree.inOrderTraversal())
 
-
     print("Minimum : ", btree.findMin(), " = ", btree.findMinLoop())
     print("Maximum : ", btree.findMax(), " = ", btree.findMaxLoop())
     print("Depth = ", btree.depth())
+
+    root = BinarySearchTreeNode(1)
+    root.left = BinarySearchTreeNode(1)
+    # root.right = BinarySearchTreeNode(1)
+
+    print("Is valid ? ", root.isValidBST())
 
     states = ["Tamil Nadu", "Kerala", "Andhra", "Telangana","Karnataka","Maharashtra","Odissa","Bihar","Dehli"]
     statesTree = buildBST(states)
