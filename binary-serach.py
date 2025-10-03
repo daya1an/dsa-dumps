@@ -20,3 +20,31 @@ def binSrch(arr,t):
 
 arr = [3, 6, 8, 9, 21, 52, 63, 79, 85, 100, 150]
 print("Answer : ",binSrch(arr,79))
+
+#better version
+def binarySearch(arr, e):
+    start = 0
+    end = len(arr) - 1
+    mid = len(arr) // 2
+
+    while start < end:
+        mid = (start + end) // 2
+
+        # print(arr[start], arr[mid], arr[end])
+
+        if arr[mid] == e:
+            return mid
+        elif arr[start] == e:
+            return start
+        elif arr[end] == e:
+            return end
+
+        if e > arr[mid]:
+            start = mid+1
+        else:
+            end = mid-1
+
+    return mid
+
+
+print(binarySearch([3, 25, 37, 41, 56, 72, 91, 100], 25))
